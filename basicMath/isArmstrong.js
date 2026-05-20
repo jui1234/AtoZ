@@ -11,7 +11,8 @@ var isArmstrong = function(n){
  if(n===sum){
    return true;
  }
- return false;
+ return false;//// this is main
+ 
 }
 
 console.log(isArmstrong(12));
