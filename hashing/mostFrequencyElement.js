@@ -5,7 +5,7 @@ let mostFrequentElement = function(arr){
   
   for(nums of arr){
     map.set(nums,(map.get(nums)||0)+1);
-    if(map.get(nums)>=maxcount){
+    if(map.get(nums)>maxcount){
       maxcount=map.get(nums);
       maxkey=nums;
     }
