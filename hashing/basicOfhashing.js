@@ -4,6 +4,7 @@ let BasicOfHashing=function(){
     map.set(1,10);
     map.set(0,0);
     map.set(2,20);
+    map.set(3,20);
 
     console.log("Whole map",map);
 
