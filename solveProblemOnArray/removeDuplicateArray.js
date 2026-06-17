@@ -2,7 +2,7 @@ let removeDuplicates=function(nums){
     for(let i=0;i<nums.length;i++){
         for(let j=i+1;j<nums.length;j++){
             if(nums[i]===nums[j]){
-                nums.splice(j,1)
+                nums.splice(j,1)//splice will remove the element at index j and shift the rest of the elements to the left
                 j--;
             }
         }
