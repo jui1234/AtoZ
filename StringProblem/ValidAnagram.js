@@ -4,15 +4,14 @@ let anagramStrings=function(s,t){
     for(let i=0;i<s.length;i++){
         map.set(s[i],(map.get(s[i])||0)+1);
     }
-    console.log("map",map)
-
+   
     for(let i=0;i<t.length;i++){
         if(map.get(t[i])>0){
           map.set(t[i],(map.get(t[i])-1))
         }
     }
 
-        console.log("map after",map)
+       
 
 
  let allZeros=[...map.values()].every(value=>value===0)
