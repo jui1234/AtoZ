@@ -1,26 +1,18 @@
 let rotateString=function(s,goal){
-    let map=new Map();
+    let i=0;
 
-    for(let i=0;i<s.length;i++){
-        map.set(s[i],(map.get(s[i])||0)+1);
+   while(i<s.length){
+    let storefirst=s.charAt(0);
+    let storelast=s.slice(1);
+       s=storelast+storefirst;
+    if(s===goal){
+        return true;
     }
-    console.log("map",map)
+    i++;
+   
 
-    for(let i=0;i<goal.length;i++){
-        if(map.get(goal[i])>0){
-          map.set(s[i],(map.get(s[i])-1))
-        }
-    }
-
-    console.log("map after",map)
-
-
- let allZeros=[...map.values()].every(value=>value===0)
- 
-    return allZeros;
-  
-
-
+}
+return false;
 }
 console.log("rotateString",rotateString("abcde","cdeab"))
 console.log("rotateString",rotateString("abcde","adeac"))
