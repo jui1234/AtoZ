@@ -6,7 +6,7 @@ let countSubstrings=function(s){
         for(let j=i+1;j<s.length;j++){
             count++;
             str+=s[j]
-            console.log("str",str)
+            // console.log("str",str)
         }
     }
     return count;
