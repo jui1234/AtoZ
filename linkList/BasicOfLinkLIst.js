@@ -34,10 +34,9 @@ class LinkList{
 }
 
 class Node{
-    constructor(node){
-        this.node=node;
-        // this.next=null;
-
+    constructor(data){
+        this.data=data;
+        this.next=null;
     }
 }
 
