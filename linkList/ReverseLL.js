@@ -34,6 +34,7 @@ let node3=new DoubleLinkList(30);
 let node4=new DoubleLinkList(40);
 
 node1.next=node2;
+
 node2.prev=node1;
 node2.next=node3;
 node3.prev=node2;
