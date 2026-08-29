@@ -6,53 +6,83 @@ let getLength=function(head){
     }
     return count;
 }
-let rotateRight=function(head,k){
-   let current=head;
-   let headcount=0;
-   let dummy=new ListNode(null);
-   let startdummy=new ListNode(null);
-   let target=getLength(head)-k;
-   console.log("target",target)
-   while(current!==null){
-    headcount++;
-    if(headcount>target){
-        console.log("headcount",headcount)
-        dummy.next=current;
-    }
-    else{
-        startdummy.next=current;
-    }
-    current=current.next;
-   }
-   dummy.next=startdummy;
-   return startdummy.next;
-}
 
-class ListNode{
+class LinkNode{
     constructor(val){
-        this.val=val;
-        this.next=null;
+       this.val=val;
+       this.next=null;
     }
 }
 
-let node1=new ListNode(1);
-let node2=new ListNode(2);
-let node3=new ListNode(3);
-let node4=new ListNode(4);
-let node5=new ListNode(5);
+let rotateRight=function(head,k){
+    if(head===null || head.next===null){
+        return head;
+    }
+
+    let length=getLength(head);
+
+    k=k%length;
+
+    if(k===0){
+        return head;
+    }
+
+    let current=head;
+    let headcount=0;
+
+    let dummy=new LinkNode(null);
+     let target=length-k;
+
+     let firstHead=null;
+     let firstTail=null;
+     let secondHead=null;
+     let secondTail=null;
+
+     while(current!==null){
+        headcount++;
+
+        if(headcount>target){
+            if(secondHead===null){
+                secondHead=current;
+            }
+            secondTail=current;
+        }
+        else{
+            if(firstHead===null){
+                firstHead=current;
+            }
+            firstTail=current;
+        }
+        current=current.next;
+     }
+
+
+   firstTail.next=null;
+
+   secondTail.next=firstHead;
+
+   dummy.next=secondHead;
+
+   return dummy.next;
+
+}
+
+let node1=new LinkNode(1);
+let node2=new LinkNode(2);
+let node3=new LinkNode(3);
+let node4=new LinkNode(4);
+let node5=new LinkNode(5);
 
 node1.next=node2;
 node2.next=node3;
 node3.next=node4;
 node4.next=node5;
 
-let ans=rotateRight(node1,2);
+let ans= rotateRight(node1,2);
 
 while(ans!==null){
     console.log(ans.val);
     ans=ans.next;
 }
-
-
 
 
