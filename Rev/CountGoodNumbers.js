@@ -1,27 +1,30 @@
-const myPow=function(x,n){
-    if(n===0){
-        return 1;
+const MOD = 1000000007n;
+
+const myPow = function(x, n) {
+    if(n === 0n) {
+        return 1n;
     }
 
-    let half=myPow(x,Math.floor(n/2));
+    let half = myPow(x, n / 2n);
 
-    if(n%2==0){
-        return half*half;
-
+    if(n % 2n === 0n) {
+        return (half * half) % MOD;
     }
 
-    // if(n<=0){
-    //     return x/myPow(x,n-1);
-    // }
-    return x*half*half;
-}
-const countGoodNumbers=function(n){
-    let even=Math.ceil(n/2);
-    let odd=Math.floor(n/2);
-
-    return myPow(5,even) * myPow(4,odd);
+    return (BigInt(x) * half * half) % MOD;
 }
 
-console.log("myPow",countGoodNumbers(1))
-console.log("myPow",countGoodNumbers(2))
-console.log("myPow",countGoodNumbers(10000000000))
+const countGoodNumbers = function(n) {
+    n = BigInt(n);
+
+    let even = (n + 1n) / 2n;
+    let odd = n / 2n;
+
+    let ans= (myPow(5n, even) * myPow(4n, odd)) % MOD;
+
+    return Number(ans);
+}
+
+console.log(countGoodNumbers(1n));
+console.log(countGoodNumbers(2n));
+console.log(countGoodNumbers(10000000000n));
