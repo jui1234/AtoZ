@@ -21,5 +21,6 @@ let reverseStack=function(stack){
 }
 
 
+
 console.log("reverseStack",reverseStack([4,3,2,1]))
 console.log("reverseStack",reverseStack([1,2,3,4,5,6]))
