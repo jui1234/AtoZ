@@ -12,7 +12,7 @@ let  generateParenthesis=function(n) {
     if(close<open){
         generate(str+')',open,close+1);
     }
-   }
+   }x
    generate('',0,0);
   
  return Ans;
