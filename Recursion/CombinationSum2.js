@@ -1,58 +1,55 @@
-function combinationSum2(candidates, target) {
+let combinationSum2 = function (candidates, target) {
     let ans = [];
+    let subset = [];
 
-    // 1. Sort the array
+    // Step 1: Sort
     candidates.sort((a, b) => a - b);
 
-    function helper(index, sum, combination) {
+    let helper = function (index, sum) {
 
-        // 2. We found a valid combination
-        if (sum === target) {
-            ans.push([...combination]);
+          if (sum === target) {
+            ans.push([...subset]);
             return;
         }
 
-        // 3. Stop if we reached the end
-        // or the sum became bigger than target
-        if (index === candidates.length || sum > target) {
+
+        // Step 2: Stop if we reached the end
+        if (index === candidates.length) {
             return;
         }
 
-        // 4. Try every available number
+        
+
+        // Step 3: Stop if sum is greater than target
+        if (sum > target) {
+            return;
+        }
+
+        // Step 4: Target reached
+      
+        // Step 5: Try every candidate from index
         for (let i = index; i < candidates.length; i++) {
 
-            // 5. Skip duplicate numbers
-            // at the SAME recursion level
+            // Step 6: Skip duplicate numbers
             if (i > index && candidates[i] === candidates[i - 1]) {
                 continue;
             }
 
-            // Since array is sorted,
-            // if this number makes sum too big,
-            // all numbers after it will also be too big
-            if (sum + candidates[i] > target) {
-                break;
-            }
+            // Take
+            subset.push(candidates[i]);
 
-            // 6. Choose the number
-            combination.push(candidates[i]);
+            helper(i + 1, sum + candidates[i]);
 
-            // 7. Move to i + 1
-            // so the SAME element cannot be used again
-            helper(i + 1, sum + candidates[i], combination);
-
-            // 8. Remove the number
-            // so we can try another possibility
-            combination.pop();
+            // Backtrack
+            subset.pop();
         }
-    }
+    };
 
-    helper(0, 0, []);
+    helper(0, 0);
 
     return ans;
-}
+};
 
-let candidates = [2, 1, 2, 7, 6, 1, 5];
-let target = 8;
-
-console.log(combinationSum2(candidates, target));
+console.log(
+    combinationSum2([2, 1, 2, 7, 6, 1, 5], 8)
+);
