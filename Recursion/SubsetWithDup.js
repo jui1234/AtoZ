@@ -24,3 +24,5 @@ let subsetsWithDup=function(nums){
 }
 
 console.log("subsetsWithDup",subsetsWithDup([1,2,2]))
+console.log("subsetsWithDup",subsetsWithDup([1,2]))
+console.log("subsetsWithDup",subsetsWithDup([1,3,3]))
