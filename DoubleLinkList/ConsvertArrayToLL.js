@@ -31,14 +31,21 @@ node4.next=node5;
 node5.prev=node4;
 
 let arrayToDoublyLinkedList=function(arr) {
-    let newhead=new DoubleNode(null);
-    for(let i=0;i<arr.length;i++){
-         newhead=arr[i];
-    }
+    let head=new DoubleNode(arr[0]);
+    let current=head;
 
-    let consvertToArray=f
+    for(let i=1;i<arr.length;i++){
+        let newNode=new DoubleNode(arr[i]);
+
+        current.next=newNode;
+        newNode.prev=current;
+
+        current=newNode;
+    }
+    return head;
+  
 }
-let ans=insertNode(list.head,3,1);
+  let ans=arrayToDoublyLinkedList([1,2,3,4,5])
 
 let consoleDoubleLL=function(head){
     for(let current=head;current!=null;current=current.next){
