@@ -7,6 +7,7 @@ let deleteAllOccurrences = function(head, target) {
 
         if (head !== null) {
             head.prev = null;
+            
         }
     }
 
