@@ -1,97 +1,85 @@
-class NodeList{
-    constructor(data,prev=null,next=null){
-       this.data=data;
-       this.prev=prev;
-       this.next=next;
+class NodeList {
+    constructor(data, prev = null, next = null) {
+        this.data = data;
+        this.prev = prev;
+        this.next = next;
     }
 }
 
-class LinkList{
-    constructor(head,tail){
-        this.head=head;
-        this.tail=tail;
+class LinkList {
+    constructor(head = null, tail = null) {
+        this.head = head;
+        this.tail = tail;
     }
 }
 
 
+let node1 = new NodeList(10);
+let node2 = new NodeList(20);
+let node3 = new NodeList(30);
+let node4 = new NodeList(40);
+
+node1.next = node2;
+node2.prev = node1;
+node2.next = node3;
+node3.prev = node2;
+node3.next = node4;
+node4.prev = node3;
 
 
-let LL1=new LinkList();
-// let LL2=new LinkList();
+let oddEvenList = function(head) {
+    let oddlist=new LinkList(null);
+    let evenlist=new LinkList(null);
 
-let nodeLL11=new NodeList(1);
-let nodeLL12=new NodeList(2);
-let nodeLL13=new NodeList(3);
-let nodeLL14=new NodeList(4);
-let nodeLL15=new NodeList(5);
+    let index=1;
 
+    let current=head;
 
-// let nodeLL21=new NodeList(1);
-// let nodeLL22=new NodeList(2);
-// let nodeLL23=new NodeList(3);
+    while(current!==null){
 
-LL1.head=nodeLL11;
-nodeLL11.next=nodeLL12;
-nodeLL12.prev=nodeLL11;
-nodeLL12.next=nodeLL13;
-nodeLL13.prev=nodeLL12;
-nodeLL13.next=nodeLL14;
-nodeLL14.prev=nodeLL13;
-nodeLL14.next=nodeLL15;
-nodeLL15.prev=nodeLL14;
+        let nextnode=current.next;
+        current.next=null;
+        current.prev=null;
+        if(index%2!==0){
+            if(oddlist.head===null){
+                oddlist.head=current;
+                oddlist.tail=current;
 
-// LL2.head=nodeLL21;
-// nodeLL21.next=nodeLL22;
-// nodeLL22.prev=nodeLL21;
-// nodeLL22.next=nodeLL23;
-// nodeLL23.prev=nodeLL22;
-
-
-
-
-let oddEvenList = function (LL1) {
-    let odd = LL1.head;
-
-    if (odd === null) return null;
-
-    let even = odd.next;
-    let evenHead = even;
-
-    while (even !== null && even.next !== null) {
-        // Connect odd-indexed nodes
-        odd.next = even.next;
-        even.next.prev = odd;
-        odd = odd.next;
-
-        // Connect even-indexed nodes
-        even.next = odd.next;
-
-        if (even.next !== null) {
-            even.next.prev = even;
+            }
+            oddlist.tail.next=current;
+            oddlist.prev=oddlist.tail;
+            oddlist.tail=current;
         }
+        else{
+            if(evenlist.head===null){
+                evenlist.head=current;
+                evenlist.tail=current;
+            }
 
-        even = even.next;
+            evenlist.tail.next=current;
+            evenlist.prev=evenlist.tail;
+            evenlist.tail=current;
+        }
+        current=nextnode;
+        index++;
     }
 
-    // Attach the even-indexed list after the odd-indexed list
-    odd.next = evenHead;
-
-    if (evenHead !== null) {
-        evenHead.prev = odd;
+    if(oddlist.tail!==null){
+        oddlist.tail.next=evenlist.head;
+        if(evenlist.head!==null){
+            evenlist.prev.head=oddlist.tail
+        }
     }
 
-    return LL1.head;
-};
+    return oddlist.head;
+}
 
+let ans = oddEvenList(node1);
 
-
-let ans=oddEvenList(LL1);
-
-let consoleLL=function(head){
-    for(let current=head;current!=null;current=current.next){
+let consoleLL = function(head) {
+    for (let current = head; current !== null; current = current.next) {
         console.log(current.data);
     }
-}
+};
 
-consoleLL(ans)
-// consoleLL(LL2.head)
+consoleLL(ans);
