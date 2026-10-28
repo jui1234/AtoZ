@@ -7,8 +7,9 @@ class NodeList{
 }
 
 class LinkList{
-    constructor(head){
+    constructor(head,tail){
         this.head=head;
+        this.tail=tail;
     }
 }
 
@@ -46,10 +47,43 @@ nodeLL15.prev=nodeLL14;
 // nodeLL23.prev=nodeLL22;
 
 
-let oddEvenList=function(LL1){
-return LL1.head;
 
-}
+
+let oddEvenList = function (LL1) {
+    let odd = LL1.head;
+
+    if (odd === null) return null;
+
+    let even = odd.next;
+    let evenHead = even;
+
+    while (even !== null && even.next !== null) {
+        // Connect odd-indexed nodes
+        odd.next = even.next;
+        even.next.prev = odd;
+        odd = odd.next;
+
+        // Connect even-indexed nodes
+        even.next = odd.next;
+
+        if (even.next !== null) {
+            even.next.prev = even;
+        }
+
+        even = even.next;
+    }
+
+    // Attach the even-indexed list after the odd-indexed list
+    odd.next = evenHead;
+
+    if (evenHead !== null) {
+        evenHead.prev = odd;
+    }
+
+    return LL1.head;
+};
+
+
 
 let ans=oddEvenList(LL1);
 
