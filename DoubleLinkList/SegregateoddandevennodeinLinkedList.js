@@ -46,7 +46,7 @@ let oddEvenList = function(head) {
                 oddlist.tail=current;
 
             }
-            oddlist.tail.next=current;
+         oddlist.tail.next=current;
             oddlist.prev=oddlist.tail;
             oddlist.tail=current;
         }
