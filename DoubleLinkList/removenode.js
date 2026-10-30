@@ -24,19 +24,30 @@ node4.next=node5;
 
 
 let removeNthFromEnd=function(head, n) {
-   if(head.val===n){
-    head=current.next;
+   let index=1;
+   let LLN=0;
+   for(let current=head;current!==null;current=current.next){
+        LLN++;
    }
 
-   for(let current=head;current.next!==null;current=current.next){
-    if(current.next.val===n){
+   let newn=LLN-n;
+//    console.log("newn",LLN-n)
+
+   for(let current=head;current!==null;current=current.next){
+        //  console.log("head",head.val)
+        if(newn===0){
+           return head.next;
+        }
+       if(index===newn){
         current.next=current.next.next;
-    }
+       }
+
+   index++;
    }
-    return head;
+  return head;
 }
 
-let ans=removeNthFromEnd(node1,2);
+let ans=removeNthFromEnd(node1,3)
 
 let consoleLL=function(head){
     for(let current=head;current!==null;current=current.next){
