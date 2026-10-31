@@ -61,3 +61,12 @@ let consoleLL = function(head) {
 };
 
 consoleLL(ans);
+
+addCarry(head){
+let current=head;
+
+if(current===null){
+    return 1;
+}
+  addCarry(current.next)
+}
