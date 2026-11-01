@@ -23,37 +23,40 @@ node3.next=node4;
 node4.next=node5;
 
 let  addOne=function(head) {
-    let count=1;
-      let LinkListnew=new LinkList(null);
 
+    function addCarry(head){
+        let current=head;
+        if(current===null){
+            return 1;
+        }
 
-    for(let current=head;current!=null;current=current.next){
-      count = count * 10 + current.val;
-    }
+       let carry= addCarry(current.next)
 
-    count = count + 1;
+       let sum=current.val+carry;
 
-    while(count!==null){
-       let digit = Math.floor(count / 100);
-       let remaining = 123 % 100;
-
-       let newnode=new ListNode(digit);
-
-       if(LinkListnew.head===null){
-        head=newnode;
+       if(sum>9){
+       current.val=0
+       return 1;
        }
-       LinkListnew.next=newnode;
-
-       count=remaining;
+       else{
+        current.val=sum;
+        return 0;
+       }
     }
-    return LinkListnew.head;
+
+    let carry = addCarry(head);
+
+    if (carry === 1) {
+        let newHead = new ListNode(1);
+        newHead.next = head;
+        return newHead;
+    }
+ return head;
 }
 
 
-
-
 let ans=addOne(node1);
-   console.log("digit",digit,remaining)
+ 
 let consoleLL = function(head) {
     for (let current = head; current !== null; current = current.next) {
         console.log(current.val);
@@ -61,12 +64,3 @@ let consoleLL = function(head) {
 };
 
 consoleLL(ans);
-
-addCarry(head){
-let current=head;
-
-if(current===null){
-    return 1;
-}
-  addCarry(current.next)
-}
