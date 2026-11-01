@@ -11,16 +11,18 @@ class LinkList{
     }
 }
 
-let node1=new ListNode(1);
-let node2=new ListNode(2);
-let node3=new ListNode(3);
-let node4=new ListNode(4);
-let node5=new ListNode(5);
+let node1=new ListNode(3);
+let node2=new ListNode(8);
+let node3=new ListNode(7);
+let node4=new ListNode(1);
+let node5=new ListNode(3);
+// let node6=new ListNode(3);
 
 node1.next=node2;
 node2.next=node3;
 node3.next=node4;
 node4.next=node5;
+// node5.next=node6;
 
 let middleOfLinkedList=function(head) {
     let total=0;
@@ -29,16 +31,17 @@ let middleOfLinkedList=function(head) {
         total++;
     }
 
-    let num=Math.ceil(total/2);
+    let num=Math.floor(total/2)+1;
 
-    if(num%2===1){
-        num++;
-    }
+
+
+    let index=1;
 
       for(let current=head;current!=null;current=current.next){
-        if(num===current){
+        if(num===index){
             return current;
         }
+        index++;
     }
         return head;
 
@@ -46,12 +49,12 @@ let middleOfLinkedList=function(head) {
 
 
 let ans=middleOfLinkedList(node1);
-// console.log(ans)
+console.log(ans.val)
  
-let consoleLL = function(head) {
-    for (let current = head; current !== null; current = current.next) {
-        console.log(current.val);
-    }
-};
-// console.log("as",5/2)
-consoleLL(ans);
+// let consoleLL = function(head) {
+//     for (let current = head; current !== null; current = current.next) {
+//         console.log(current.val);
+//     }
+// };
+// // console.log("as",5/2)
+// consoleLL(ans);
